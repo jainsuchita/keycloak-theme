@@ -40,15 +40,7 @@
   <div class="${properties.kcLoginClass!}">
     <div id="kc-header" class="${properties.kcHeaderClass!}">
       <div id="kc-header-wrapper" class="${properties.kcHeaderWrapperClass!}">
-        <#--  ${kcSanitize(msg("loginTitleHtml",(realm.displayNameHtml!'')))?no_esc}  -->
-        <header class="bx--header login-header__container">
-            <a class="bx--header__name">
-                <span class="bx--header__name--prefix">
-                    IBM
-                </span>
-                &nbsp;
-            </a>
-        </header>
+        ${kcSanitize(msg("loginTitleHtml",(realm.displayNameHtml!'')))?no_esc}
       </div>
     </div>
     <div class="${properties.kcFormCardClass!} <#if displayWide>${properties.kcFormCardAccountClass!}</#if>">
