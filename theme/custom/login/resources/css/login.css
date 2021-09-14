@@ -1,0 +1,95 @@
+body{
+    padding: 0;
+    border: 0;
+    margin: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+.login-pf-page {
+    padding-top: 0px;
+}
+
+.login-pf body {
+    /* background: url("../img/keycloak-bg.png") no-repeat center center fixed; */
+    background: linear-gradient(225deg, black, #011b70e0);
+    background-size: cover;
+    height: 100%;
+     color: #f4f4f4;
+}
+
+
+/* Login page header classes */
+.bx--header {
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 8000;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: #161616;
+    border-bottom: 1px solid #393939;
+    width: 100%;
+}
+
+.bx--header__name {
+    padding-left: 16px;
+    color: whitesmoke;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: 0.16px;
+    line-height: 18.06px;
+}
+
+/*** ends ***/
+
+/* Login page sub-heading */
+
+.card-pf{
+    background: transparent;
+    padding-left: 32px !important;
+    padding-top: 32px !important;
+}
+
+#kc-page-title{
+    margin:0;
+}
+
+
+#login-page__heading{
+    height: 40px;
+    width: 440px;
+    font-size: 32px;
+    letter-spacing: 0;
+    line-height: 40px;
+    font-weight: 400;
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+}
+
+#login-page__subheading{
+    padding-top: 16px;
+    height: 60px;
+    width: 512px;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 22px;
+    font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+}
+
+.login-page__login{
+    padding-top: 32px;
+    height: 52px;
+    width: 42px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+/*** ends ***/
+

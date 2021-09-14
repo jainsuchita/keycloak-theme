@@ -2,7 +2,7 @@
 #	docker build -t jainsuchi21/keycloak-theme .
 
 #docker-run:
-#	docker run \
+#	docker run -d\
 		--name keycloak-testing-container \
 		-p 4000:8080 \
 		-e KEYCLOAK_USER=admin \
@@ -18,16 +18,18 @@ NS ?= test
 VERSION ?= latest
 IMAGE_NAME ?= keycloak-theme
 CONTAINER_NAME ?= keycloak-testing-container
-SOURCE ?= /Users/suchitajain/code/keycloak/keycloak-theme/theme/custom
-TARGET ?= /opt/jboss/keycloak/themes/custom
+SOURCE ?= /Users/suchitajain/code/keycloak/keycloak-theme/theme/
+# SOURCE ?= /Users/suchitajain/code/keycloak/keycloak-theme/auth/themes
+# TARGET ?= /opt/jboss/keycloak/themes/custom
+TARGET ?= /opt/jboss/keycloak/themes/
 
 build:
 	docker build -t $(NS)/$(IMAGE_NAME):$(VERSION) -f Dockerfile .
 
 startup:
-	docker run -d \
+	docker run -d\
 	--name $(CONTAINER_NAME) \
-	-p 4000:8080 \
+	-p 8080:8080 \
 	-e KEYCLOAK_USER=admin \
 	-e KEYCLOAK_PASSWORD=admin \
 	jboss/keycloak:11.0.3
@@ -40,15 +42,20 @@ copyStandalone:
 	docker cp $(CONTAINER_NAME):/opt/jboss/keycloak/standalone/configuration/standalone.xml .
 
 run:
-	docker run -d \
+	docker run \
 	--name $(CONTAINER_NAME) \
 	--mount type=bind,source=$(SOURCE),target=$(TARGET) \
-	-p 4000:8080 \
+	-p 8080:8080 \
 	-e KEYCLOAK_USER=admin \
 	-e KEYCLOAK_PASSWORD=admin \
 	-it $(NS)/$(IMAGE_NAME):$(VERSION)
 
 delete:
-	docker rm $(CONTAINER_NAME)
+	docker rm --force $(CONTAINER_NAME)
+
+deploy: 
+	make delete
+	make build
+	make run
 
 default: build

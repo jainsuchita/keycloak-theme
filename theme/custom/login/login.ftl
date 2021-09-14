@@ -1,8 +1,13 @@
 <#import "template.ftl" as layout>
 <@layout.registrationLayout displayInfo=social.displayInfo displayWide=(realm.password && social.providers??); section>
     <#if section = "header">
-        ${msg("doLogIn")}
+         <h2 id="login-page__heading">The IBM Compliance Authority</h2>
+         <h5 id="login-page__subheading">Manage your Z and LinuxONE systems with a tool that automates, standardizes, and expedites security compliance</h5>
+         <h5 class="login-page__login">Login</h5>
+
+         
     <#elseif section = "form">
+    
     <div id="kc-form" <#if realm.password && social.providers??>class="${properties.kcContentWrapperClass!}"</#if>>
       <div id="kc-form-wrapper" <#if realm.password && social.providers??>class="${properties.kcFormSocialAccountContentClass!} ${properties.kcFormSocialAccountClass!}"</#if>>
         <#if realm.password>
@@ -61,6 +66,7 @@
             </div>
         </#if>
       </div>
+
     <#elseif section = "info" >
         <#if realm.password && realm.registrationAllowed && !registrationDisabled??>
             <div id="kc-registration">
@@ -68,5 +74,7 @@
             </div>
         </#if>
     </#if>
+
+   
 
 </@layout.registrationLayout>
