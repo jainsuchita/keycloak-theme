@@ -6,6 +6,8 @@ body{
     font-size: 100%;
     vertical-align: baseline;
     font-family: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
 .login-pf-page {
