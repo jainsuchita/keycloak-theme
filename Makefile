@@ -39,7 +39,8 @@ copyFolder:
 	docker cp $(CONTAINER_NAME):/opt/jboss/keycloak/themes/ ./theme
 
 copyStandalone:
-	docker cp $(CONTAINER_NAME):/opt/jboss/keycloak/standalone/configuration/standalone.xml .
+#	docker cp $(CONTAINER_NAME):/opt/jboss/keycloak/standalone/configuration/standalone.xml .
+	docker cp $(CONTAINER_NAME):/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml .
 
 run:
 	docker run \
