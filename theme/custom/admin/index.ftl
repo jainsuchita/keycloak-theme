@@ -27,6 +27,14 @@
         var resourceVersion = '${resourceVersion}';
     </script>
 
+    <#--  React minified/bundled files  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.9.0/umd/react.production.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.production.min.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/styled-components/4.3.2/styled-components.min.js" type="text/javascript"></script>
+
+    <script type="text/babel" src="${resourceUrl}/jsx/menu.jsx" ></script>
+
     <!-- Minimized versions (for those that have one) -->
     <script src="${resourceCommonUrl}/node_modules/jquery/dist/jquery.min.js" type="text/javascript"></script>
     <script src="${resourceCommonUrl}/node_modules/select2/select2.js" type="text/javascript"></script>
@@ -89,6 +97,9 @@
 
 <nav class="navbar navbar-default navbar-pf" role="navigation" data-ng-include data-src="resourceUrl + '/partials/menu.html'">
 </nav>
+
+<#--  Sidebar (React Component)  -->
+<div id="sidebar-ibm"></div>
 
 <div class="container-fluid">
 <div class="row">

@@ -26,7 +26,7 @@ a:focus, a:hover {
 }
 
 .bx--header__name {
-    padding-left: 16px;
+    margin-left: 50px;
     color: whitesmoke;
     width: 256px;
     cursor: pointer;
