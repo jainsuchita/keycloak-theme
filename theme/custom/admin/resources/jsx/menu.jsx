@@ -1,5 +1,5 @@
 const StyledMenu = styled.nav`
-    z-index: 1;
+    z-index: 999;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,7 +12,7 @@ const StyledMenu = styled.nav`
     left: 0;
     webkit-transition: 300ms cubic-bezier(0.2, 0, 0.38, 0.9);
     transition: 300ms cubic-bezier(0.2, 0, 0.38, 0.9);
-    width: 214px;
+    width: 312px;
     background-color:  rgb(38,38,38);
     margin-top: 50px;
 
@@ -27,31 +27,12 @@ const StyledMenu = styled.nav`
         width: 100%;
         }
 
-    // a {
-    //     font-size: 2rem;
-    //     text-transform: uppercase;
-    //     padding: 2rem 0;
-    //     font-weight: bold;
-    //     letter-spacing: 0.5rem;
-    //     color: #0D0C1D;
-    //     text-decoration: none;
-    //     transition: color 0.3s linear;
-
-    //     @media (max-width: 576px) {
-    //     font-size: 1.5rem;
-    //     text-align: center;
-    //     }
-
-    //     &:hover {
-    //     color: #343078;
-    //     }
-    // }
 `
 
 const Menu = ({ open }) => {
     return (
         <StyledMenu open={open} aria-label="Page navigation menu"
-            class="pal--side-nav pal--side-nav--inverse pal--world-level-nav left-nav-wrapper"
+            class="pal--side-nav pal--world-level-nav left-nav-wrapper col-sm-3 col-md-2 col-sm-pull-9 col-md-pull-10 sidebar-pf sidebar-pf-left"
             id="security-compliance-ui--left-nav">
 
             <h2 class="pal--side-nav__item pal--side-nav__header">
@@ -152,8 +133,6 @@ const StyledBurger = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-//   width: 48px;
-//   height: 48px;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -173,28 +152,6 @@ const StyledBurger = styled.button`
 
   .btn-inactive{
       display: none;
-  }
-//   div {
-//     width: 2rem;
-//     height: 0.25rem;
-//     background: ${({ open }) => open ? '#fff' : '#fff'};
-//     border-radius: 10px;
-//     transition: all 0.3s linear;
-//     position: relative;
-//     transform-origin: 1px;
-
-//     :first-child {
-//       transform: ${({ open }) => open ? 'rotate(45deg)' : 'rotate(0)'};
-//     }
-
-//     :nth-child(2) {
-//       opacity: ${({ open }) => open ? '0' : '1'};
-//       transform: ${({ open }) => open ? 'translateX(20px)' : 'translateX(0)'};
-//     }
-
-//     :nth-child(3) {
-//       transform: ${({ open }) => open ? 'rotate(-45deg)' : 'rotate(0)'};
-//     }
   }
 `
 
