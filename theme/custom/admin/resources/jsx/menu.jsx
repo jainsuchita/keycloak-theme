@@ -29,96 +29,115 @@ const StyledMenu = styled.nav`
 
 `
 
+const DropDownMenu = styled.ul`
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+
+    &.dropdown__list--active {
+        max-height: 1000px; 
+        opacity: 1; 
+    }
+`
 const Menu = ({ open }) => {
+    const [listName, setListName] = React.useState({});
+
+    const handleListClick = (name) => {
+        setListName({
+            ...listName,
+            [name]: !listName[name]
+        });
+    }
+
     return (
         <StyledMenu open={open} aria-label="Page navigation menu"
-            class="pal--side-nav pal--world-level-nav left-nav-wrapper col-sm-3 col-md-2 col-sm-pull-9 col-md-pull-10 sidebar-pf sidebar-pf-left"
+            className="pal--side-nav pal--world-level-nav left-nav-wrapper col-sm-3 col-md-2 col-sm-pull-9 col-md-pull-10 sidebar-pf sidebar-pf-left"
             id="security-compliance-ui--left-nav">
 
-            <h2 class="pal--side-nav__item pal--side-nav__header">
+            <h2 className="pal--side-nav__item pal--side-nav__header">
                 <a href="/security-compliance/"
-                    class="pal--side-nav__link">Compliance Authority
+                    className="pal--side-nav__link">Compliance Authority
                 </a>
             </h2>
 
-            <ul class="pal--side-nav__items">
+            <ul className="pal--side-nav__items">
 
-                <li class="pal--side-nav__item pal--side-nav__item--active">
+                <li className="pal--side-nav__item pal--side-nav__item--active">
                     <a href="/security-compliance/dashboard"
-                        class="pal--side-nav__link" id="left-nav-dashboard" aria-current="page">
+                        className="pal--side-nav__link" id="left-nav-dashboard" aria-current="page">
                         Dashboard
                     </a>
                 </li>
 
-                <li class="pal--side-nav__item left-nav__title">
-                    <a href="/security-compliance/" class="pal--side-nav__link"
+                <li className="pal--side-nav__item left-nav__title">
+                    <a href="/security-compliance/" className="pal--side-nav__link"
                         id="left-nav-automate-compliance" disabled="">Automate Security and Compliance
                     </a>
                 </li>
 
-                <li class="pal--side-nav__item pal--side-nav__item--with-menu">
+                <li className="pal--side-nav__item pal--side-nav__item--with-menu" onClick={() => handleListClick("assess")}>
                     <button aria-haspopup="true"
-                        aria-expanded="false" type="button" class="pal--side-nav__menu-button"
+                        aria-expanded="false" type="button" className="pal--side-nav__menu-button"
                         id="left-nav-automate-compliance-validate">Assess
                         <svg focusable="false"
                             preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" class="pal--side-nav__menu-icon">
+                            width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" className="pal--side-nav__menu-icon">
                             <path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>
                         </svg>
                     </button>
 
-                    <ul class="pal--side-nav__menu">
-                        <li class="pal--side-nav__item">
-                            <a href="/security-compliance/scans" class="pal--side-nav__link"
+                    <DropDownMenu className={`${listName["assess"] ? 'dropdown__list--active' : ''}`}>
+                        <li className="pal--side-nav__item">
+                            <a href="/security-compliance/scans" className="pal--side-nav__link"
                                 id="left-nav-scans">Scans
                             </a>
                         </li>
-                        <li class="pal--side-nav__item">
-                            <a href="/security-compliance/remediation" class="pal--side-nav__link"
+                        <li className="pal--side-nav__item">
+                            <a href="/security-compliance/remediation" className="pal--side-nav__link"
                                 id="left-nav-remediation">Remediation
                             </a>
                         </li>
-                        <li class="pal--side-nav__item">
-                            <a href="/security-compliance/remediation" class="pal--side-nav__link"
+                        <li className="pal--side-nav__item">
+                            <a href="/security-compliance/remediation" className="pal--side-nav__link"
                                 id="left-nav-security-insights">Security Insights
                             </a>
                         </li>
-                    </ul>
+                    </DropDownMenu>
                 </li>
 
-                <li class="pal--side-nav__item pal--side-nav__item--with-menu">
+                <li className="pal--side-nav__item pal--side-nav__item--with-menu" onClick={() => handleListClick("configure")}>
                     <button aria-haspopup="true"
-                        aria-expanded="false" type="button" class="pal--side-nav__menu-button"
+                        aria-expanded="false" type="button" className="pal--side-nav__menu-button"
                         id="left-nav-automate-compliance-configure">Configure
                         <svg focusable="false"
                             preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" class="pal--side-nav__menu-icon">
+                            width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" className="pal--side-nav__menu-icon">
                             <path d="M8 11L3 6 3.7 5.3 8 9.6 12.3 5.3 13 6z"></path>
                         </svg>
                     </button>
 
-                    <ul class="pal--side-nav__menu">
-                        <li class="pal--side-nav__item">
-                            <a href="/security-compliance/scopes" class="pal--side-nav__link"
+                    <DropDownMenu className={`${listName["configure"] ? 'dropdown__list--active' : ''}`}>
+                        <li className="pal--side-nav__item">
+                            <a href="/security-compliance/scopes" className="pal--side-nav__link"
                                 id="left-nav-scopes">Scopes
                             </a>
                         </li>
-                        <li class="pal--side-nav__item">
-                            <a href="/security-compliance/goals" class="pal--side-nav__link"
+                        <li className="pal--side-nav__item">
+                            <a href="/security-compliance/goals" className="pal--side-nav__link"
                                 id="left-nav-controls">Goals
                             </a>
                         </li>
-                        <li class="pal--side-nav__item">
-                            <a href="/security-compliance/profiles" class="pal--side-nav__link"
+                        <li className="pal--side-nav__item">
+                            <a href="/security-compliance/profiles" className="pal--side-nav__link"
                                 id="left-nav-profiles">Profiles
                             </a>
                         </li>
-                        <li class="pal--side-nav__item">
-                            <a href="/security-compliance/settings" class="pal--side-nav__link"
+                        <li className="pal--side-nav__item">
+                            <a href="/security-compliance/settings" className="pal--side-nav__link"
                                 id="left-nav-settings">Settings
                             </a>
                         </li>
-                    </ul>
+                    </DropDownMenu>
                 </li>
 
             </ul>
@@ -155,16 +174,17 @@ const StyledBurger = styled.button`
   }
 `
 
+
 const Burger = ({ open, setOpen }) => {
     return (
-        <StyledBurger open={open} onClick={() => setOpen(!open)} class="bx--left-nav__trigger bx--left-nav__trigger--active" data-left-nav-toggle="open" aria-haspopup="true" aria-label="Close Global Navigation" aria-expanded="true" data-aria-open="Close Global Navigation" data-aria-closed="Expand Global Navigation">
+        <StyledBurger open={open} onClick={() => setOpen(!open)} className="bx--left-nav__trigger bx--left-nav__trigger--active" data-left-nav-toggle="open" aria-haspopup="true" aria-label="Close Global Navigation" aria-expanded="true" data-aria-open="Close Global Navigation" data-aria-closed="Expand Global Navigation">
 
-            <svg class={`btn-${!open ? 'active' : "inactive"}`} focusable="false" preserveAspectRatio="xMidYMid meet" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+            <svg className={`btn-${!open ? 'active' : "inactive"}`} focusable="false" preserveAspectRatio="xMidYMid meet" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
                 <path d="M2 14.8H18V16H2zM2 11.2H18V12.399999999999999H2zM2 7.6H18V8.799999999999999H2zM2 4H18V5.2H2z">
                 </path>
             </svg>
 
-            <svg class={`btn-${open ? 'active' : "inactive"}`} focusable="false" preserveAspectRatio="xMidYMid meet" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+            <svg className={`btn-${open ? 'active' : "inactive"}`} focusable="false" preserveAspectRatio="xMidYMid meet" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
                 <path d="M24 9.4L22.6 8 16 14.6 9.4 8 8 9.4 14.6 16 8 22.6 9.4 24 16 17.4 22.6 24 24 22.6 17.4 16 24 9.4z">
                 </path>
             </svg>
@@ -172,7 +192,6 @@ const Burger = ({ open, setOpen }) => {
         </StyledBurger>
     )
 }
-
 
 const App = () => {
     const [open, setOpen] = React.useState(false);
