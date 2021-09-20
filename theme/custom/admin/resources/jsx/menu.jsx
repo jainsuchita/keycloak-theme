@@ -6,7 +6,7 @@ const StyledMenu = styled.nav`
     transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(-100%)'};
     height: 100vh;
     text-align: left;
-    padding: 2rem;
+    padding: 0;
     position: absolute;
     top: 0;
     left: 0;
@@ -15,6 +15,10 @@ const StyledMenu = styled.nav`
     width: 312px;
     background-color:  rgb(38,38,38);
     margin-top: 50px;
+
+    & a{
+        padding: 8px 12px 8px 16px;
+    }
 
     @media screen and (min-width: 42rem){
         .pal--side-nav {
@@ -33,14 +37,69 @@ const DropDownMenu = styled.ul`
     list-style: none;
     max-height: 0;
     overflow: hidden;
+    visibility: none;
+    transition: all 240ms cubic-bezier(0.2, 0, 0.38, 0.9);
+    transition-property: max-height, opacity, visibility;
+    padding: 0;
 
     &.dropdown__list--active {
-        max-height: 1000px; 
-        opacity: 1; 
+        max-height: 400px; 
+        opacity: 1;
+        visibility: visible;
+    }
+
+    & a{
+        padding: 8px 24px;
     }
 `
 const Menu = ({ open }) => {
     const [listName, setListName] = React.useState({});
+
+    const assessItems = [
+        {
+            name: "Scans",
+            href: "http://localhost:4000/security-compliance/scans",
+            id: "left-nav-scans"
+        },
+
+        {
+            name: "Remediation",
+            href: "http://localhost:4000/security-compliance/remediation",
+            id: "left-nav-remediation"
+        },
+
+        {
+            name: "Security Insights",
+            href: "http://localhost:4000/security-compliance/remediation",
+            id: "left-nav-security-insights"
+        },
+    ];
+
+    const configureItems = [
+        {
+            name: "Scopes",
+            href: "http://localhost:4000/security-compliance/scopes",
+            id: "left-nav-scopes"
+        },
+
+        {
+            name: "Goals",
+            href: "http://localhost:4000/security-compliance/goals",
+            id: "left-nav-controls"
+        },
+
+        {
+            name: "Profiles",
+            href: "http://localhost:4000/security-compliance/profiles",
+            id: "left-nav-profiles"
+        },
+
+        {
+            name: "Settings",
+            href: "http://localhost:4000/security-compliance/settings",
+            id: "left-nav-settings"
+        },
+    ]
 
     const handleListClick = (name) => {
         setListName({
@@ -55,7 +114,7 @@ const Menu = ({ open }) => {
             id="security-compliance-ui--left-nav">
 
             <h2 className="pal--side-nav__item pal--side-nav__header">
-                <a href="/security-compliance/"
+                <a href="http://localhost:4000/security-compliance/"
                     className="pal--side-nav__link">Compliance Authority
                 </a>
             </h2>
@@ -63,21 +122,21 @@ const Menu = ({ open }) => {
             <ul className="pal--side-nav__items">
 
                 <li className="pal--side-nav__item pal--side-nav__item--active">
-                    <a href="/security-compliance/dashboard"
+                    <a href="http://localhost:4000/security-compliance/dashboard"
                         className="pal--side-nav__link" id="left-nav-dashboard" aria-current="page">
                         Dashboard
                     </a>
                 </li>
 
                 <li className="pal--side-nav__item left-nav__title">
-                    <a href="/security-compliance/" className="pal--side-nav__link"
+                    <a href="http://localhost:4000/security-compliance/" className="pal--side-nav__link"
                         id="left-nav-automate-compliance" disabled="">Automate Security and Compliance
                     </a>
                 </li>
 
                 <li className="pal--side-nav__item pal--side-nav__item--with-menu" onClick={() => handleListClick("assess")}>
                     <button aria-haspopup="true"
-                        aria-expanded="false" type="button" className="pal--side-nav__menu-button"
+                        aria-expanded={`${listName["assess"]}`} type="button" className="pal--side-nav__menu-button"
                         id="left-nav-automate-compliance-validate">Assess
                         <svg focusable="false"
                             preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -87,27 +146,21 @@ const Menu = ({ open }) => {
                     </button>
 
                     <DropDownMenu className={`${listName["assess"] ? 'dropdown__list--active' : ''}`}>
-                        <li className="pal--side-nav__item">
-                            <a href="/security-compliance/scans" className="pal--side-nav__link"
-                                id="left-nav-scans">Scans
-                            </a>
-                        </li>
-                        <li className="pal--side-nav__item">
-                            <a href="/security-compliance/remediation" className="pal--side-nav__link"
-                                id="left-nav-remediation">Remediation
-                            </a>
-                        </li>
-                        <li className="pal--side-nav__item">
-                            <a href="/security-compliance/remediation" className="pal--side-nav__link"
-                                id="left-nav-security-insights">Security Insights
-                            </a>
-                        </li>
+                        {
+                            assessItems.map((item) => {
+                                return (
+                                    <li className="pal--side-nav__item">
+                                        <a href={item.href} key={item.id} className="pal--side-nav__link" id={item.id}>{item.name}</a>
+                                    </li>
+                                )
+                            })
+                        }
                     </DropDownMenu>
                 </li>
 
                 <li className="pal--side-nav__item pal--side-nav__item--with-menu" onClick={() => handleListClick("configure")}>
                     <button aria-haspopup="true"
-                        aria-expanded="false" type="button" className="pal--side-nav__menu-button"
+                        aria-expanded={`${listName["configure"]}`} type="button" className="pal--side-nav__menu-button"
                         id="left-nav-automate-compliance-configure">Configure
                         <svg focusable="false"
                             preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -117,26 +170,15 @@ const Menu = ({ open }) => {
                     </button>
 
                     <DropDownMenu className={`${listName["configure"] ? 'dropdown__list--active' : ''}`}>
-                        <li className="pal--side-nav__item">
-                            <a href="/security-compliance/scopes" className="pal--side-nav__link"
-                                id="left-nav-scopes">Scopes
-                            </a>
-                        </li>
-                        <li className="pal--side-nav__item">
-                            <a href="/security-compliance/goals" className="pal--side-nav__link"
-                                id="left-nav-controls">Goals
-                            </a>
-                        </li>
-                        <li className="pal--side-nav__item">
-                            <a href="/security-compliance/profiles" className="pal--side-nav__link"
-                                id="left-nav-profiles">Profiles
-                            </a>
-                        </li>
-                        <li className="pal--side-nav__item">
-                            <a href="/security-compliance/settings" className="pal--side-nav__link"
-                                id="left-nav-settings">Settings
-                            </a>
-                        </li>
+                        {
+                            configureItems.map((item) => {
+                                return (
+                                    <li className="pal--side-nav__item">
+                                        <a href={item.href} key={item.id} className="pal--side-nav__link" id={item.id}>{item.name}</a>
+                                    </li>
+                                )
+                            })
+                        }
                     </DropDownMenu>
                 </li>
 
