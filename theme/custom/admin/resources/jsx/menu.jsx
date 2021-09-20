@@ -123,7 +123,7 @@ const Menu = ({ open }) => {
 
                 <li className="pal--side-nav__item pal--side-nav__item--active">
                     <a href="http://localhost:4000/security-compliance/dashboard"
-                        className="pal--side-nav__link" id="left-nav-dashboard" aria-current="page">
+                        className="pal--side-nav__link" id="left-nav-dashboard">
                         Dashboard
                     </a>
                 </li>

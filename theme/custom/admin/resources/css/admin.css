@@ -12,6 +12,7 @@ body{
 a:focus, a:hover {
     text-decoration: none;
     outline: 0;
+    color: whitesmoke;
 }
 
 /* Header */
@@ -193,4 +194,25 @@ a:focus, a:hover {
 #ibm-dropdown-toggle{
     display: flex;
     align-items: baseline;
+}
+
+.pal--side-nav__item:not(.pal--side-nav__item--with-menu):hover, .pal--side-nav__item .pal--side-nav__menu-button:hover {
+    background-color:#393939;
+}
+
+.pal--side-nav__link:focus, .pal--side-nav__menu-button:focus, .pal--side-nav__collapse-button:focus {
+    outline: 2px solid #0f62fe;
+}
+
+.pal--world-level-nav .pal--side-nav__link[aria-current=page], .pal--world-level-nav .pal--side-nav__item--active .pal--side-nav__menu-button {
+    color: #f4f4f4;
+}
+
+.pal--side-nav__item--active .pal--side-nav__menu-button::before, .pal--side-nav__link[aria-current=page]::before {
+    background-color: #0f62fe;
+    content: "";
+    left: 0;
+    position: absolute;
+    width: 4px;
+    height: 2.125rem;
 }
