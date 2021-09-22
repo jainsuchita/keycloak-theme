@@ -8,6 +8,7 @@
 		-e KEYCLOAK_USER=admin \
 		-e KEYCLOAK_PASSWORD=admin \
 		-it jainsuchi21/keycloak-theme:latest \
+		-e KEYCLOAK_WELCOME_THEME=keycloak \
 #		-v ~/Users/suchitajain/code/keycloak/keycloak-theme:/keycloak-theme
 
 #docker-delete:

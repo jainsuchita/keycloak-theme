@@ -99,6 +99,11 @@ const Menu = ({ open }) => {
             href: "http://localhost:4000/security-compliance/settings",
             id: "left-nav-settings"
         },
+        {
+            name: "Access Management",
+            href: "localhost:8080/auth/admin/master/console",
+            id: "left-nav-accessManagement"
+        },
     ]
 
     const handleListClick = (name) => {
