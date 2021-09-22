@@ -1,6 +1,3 @@
-# -e KEYCLOAK_WELCOME_THEME=keycloak \
-KEYCLOAK_DEFAULT_THEME
-
 NS ?= test
 VERSION ?= latest
 IMAGE_NAME ?= keycloak-theme
@@ -34,6 +31,7 @@ run:
 	-e KEYCLOAK_USER=admin \
 	-e KEYCLOAK_PASSWORD=admin \
 	-e KEYCLOAK_DEFAULT_THEME=custom \
+	-e KEYCLOAK_WELCOME_THEME=keycloak \
 	-it $(NS)/$(IMAGE_NAME):$(VERSION)
 
 delete:
