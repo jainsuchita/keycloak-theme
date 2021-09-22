@@ -6,9 +6,6 @@ USER root
 WORKDIR /
 
 # ADD /theme/custom /opt/jboss/keycloak/themes/custom
-# ADD /auth/themes/ /opt/jboss/keycloak/themes/
-
-# ADD /standalone.xml /opt/jboss/keycloak/standalone/configuration/standalone.xml
 
 ADD /standalone-ha.xml /opt/jboss/keycloak/standalone/configuration/standalone-ha.xml
 

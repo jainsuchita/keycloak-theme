@@ -14,15 +14,12 @@
 #docker-delete:
 #	docker rm keycloak-testing-container
 
-
 NS ?= test
 VERSION ?= latest
 IMAGE_NAME ?= keycloak-theme
 CONTAINER_NAME ?= keycloak-testing-container
-SOURCE ?= /Users/suchitajain/code/keycloak/keycloak-theme/theme/
-# SOURCE ?= /Users/suchitajain/code/keycloak/keycloak-theme/auth/themes
-# TARGET ?= /opt/jboss/keycloak/themes/custom
-TARGET ?= /opt/jboss/keycloak/themes/
+SOURCE ?= /Users/suchitajain/code/keycloak/keycloak-theme/theme/custom
+TARGET ?= /opt/jboss/keycloak/themes/custom
 
 build:
 	docker build -t $(NS)/$(IMAGE_NAME):$(VERSION) -f Dockerfile .
@@ -36,11 +33,9 @@ startup:
 	jboss/keycloak:11.0.3
 
 copyFolder:
-#	docker cp $(CONTAINER_NAME):/opt/jboss/keycloak/themes/keycloak ./theme
 	docker cp $(CONTAINER_NAME):/opt/jboss/keycloak/themes/ ./theme
 
 copyStandalone:
-#	docker cp $(CONTAINER_NAME):/opt/jboss/keycloak/standalone/configuration/standalone.xml .
 	docker cp $(CONTAINER_NAME):/opt/jboss/keycloak/standalone/configuration/standalone-ha.xml .
 
 run:
